@@ -1,24 +1,28 @@
 # express-test
 https://bezkoder.com/node-js-mongodb-auth-jwt/
 
+```
 npm init -y
-entry point: server.js
-npm install express mongoose body-parser cors jsonwebtoken bcryptjs --save
-create files and folder structure like so
+```
+* entry point: server.js
 
-make your own db.config.js from a role assigned to you with content:
-module.exports = {
-    HOST: "localhost",
-    PORT: 27017,
-    USER: '...',
-    PASS: '...',
-    DB: "Trip"
-};
+```
+npm install
+```
 
-make .gitignore file with content:
-node_modules/
-package-lock.json
-app/config/db.config.js
+* get your own user and pass from MongoDB, create a new file in config folder 'db.config.js':
+* past the code below and fill it in for db.config.js
+```
+    module.exports = {
+        HOST: "localhost",
+        PORT: 27017,
+        USER: '...',
+        PASS: '...',
+        DB: "Trip"
+    };
+```
+```
+node server.js
+```
 
-run node server.js
-use postman
+* use postman to test
