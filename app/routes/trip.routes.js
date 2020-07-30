@@ -14,7 +14,7 @@ module.exports = function(app) {
     });
 
     // post trip
-    app.post("/api/trip", async (request, response) => {
+    app.post("/api/trip", [authJwt.verifyToken, authJwt.isModerator], async (request, response) => {
         try {
             var trip = new TripModel(request.body);
             var result = await trip.save();
@@ -27,7 +27,7 @@ module.exports = function(app) {
 
 
     // get trips
-    app.get("/api/trips", async (request, response) => {
+    app.get("/api/trips", [authJwt.verifyToken, authJwt.isModerator], async (request, response) => {
         try {
             var result = await TripModel.find().exec();
             response.send(result);
@@ -37,7 +37,7 @@ module.exports = function(app) {
     });
 
     // get trip by id
-    app.get("/api/trip/:id", async (request, response) => {
+    app.get("/api/trip/:id", [authJwt.verifyToken, authJwt.isModerator], async (request, response) => {
         try {
             var trip = await TripModel.findById(request.params.id).exec();
             response.send(trip);
@@ -47,7 +47,7 @@ module.exports = function(app) {
     });
 
     // update trip by id
-    app.put("/api/trip/:id", async (request, response) => {
+    app.put("/api/trip/:id", [authJwt.verifyToken, authJwt.isModerator], async (request, response) => {
         try {
             var trip = await TripModel.findById(request.params.id).exec();
             trip.set(request.body);
@@ -59,7 +59,7 @@ module.exports = function(app) {
     });
 
     // delete trip by id
-    app.delete("/api/trip/:id", async (request, response) => {
+    app.delete("/api/trip/:id", [authJwt.verifyToken, authJwt.isModerator], async (request, response) => {
         try {
             var result = await TripModel.deleteOne({ _id: request.params.id }).exec();
             response.send(result);
