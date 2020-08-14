@@ -1,5 +1,6 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/user.controller");
+const UserModel = require("../models/user.model");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -25,4 +26,16 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+  // update user
+  app.put("/api/user/:id", [authJwt.verifyToken], async (request, response) => {
+    try {
+        var user = await UserModel.findById(request.params.id).exec();
+        user.set(request.body);
+        var result = await user.save();
+        response.send(result);
+    } catch (error) {
+        response.status(500).send(error);
+    }
+  });
 };
