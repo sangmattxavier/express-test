@@ -9,9 +9,9 @@ const Trip = mongoose.model(
     start_date: Date,
     end_date: Date,
     duration: Number,
-    list_of_locations: [String],
-    list_of_pins: [PinModel],
-    // list_of_participants: [User],
+    locations: [String],
+    pins: [PinModel],
+    participant_ids: {type: [String], required: true},
     itinerary_list: [String],
     supply_list: [String],
     has_map: Boolean
