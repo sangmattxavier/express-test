@@ -1,7 +1,7 @@
 {
   "name": "express-test",
   "version": "1.0.0",
-  "description": "",
+  "description": "https://bezkoder.com/node-js-mongodb-auth-jwt/",
   "main": "server.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -13,7 +13,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,6 @@
   "bugs": {
     "url": "https://github.com/sangmattxavier/express-test/issues"
   },
-  "homepage": "https://github.com/sangmattxavier/express-test#readme"
+  "homepage": "https://github.com/sangmattxavier/express-test#readme",
+  "keywords": []
 }
