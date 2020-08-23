@@ -36,6 +36,16 @@ module.exports = function(app) {
         }
     });
 
+    // get trips by id
+    app.get("/api/trips/:id", [authJwt.verifyToken], async (request, response) => {
+        try {
+            var result = await TripModel.find().where({participant_ids: request.params.id}).exec();
+            response.send(result);
+        } catch (error) {
+            response.status(500).send(error);
+        }
+    });
+
     // get trip by id
     app.get("/api/trip/:id", [authJwt.verifyToken], async (request, response) => {
         try {
