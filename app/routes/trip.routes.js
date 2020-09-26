@@ -18,7 +18,7 @@ module.exports = function(app) {
         try {
             var trip = new TripModel(request.body);
             var result = await trip.save();
-            response.send(result);
+            response.status(200).send(result);
         } catch (error) {
             response.status(500).send(error);
         }
@@ -28,7 +28,7 @@ module.exports = function(app) {
     app.get("/api/trips", [authJwt.verifyToken], async (request, response) => {
         try {
             var result = await TripModel.find().exec();
-            response.send(result);
+            response.status(200).send(result);
         } catch (error) {
             response.status(500).send(error);
         }
@@ -38,7 +38,7 @@ module.exports = function(app) {
     app.get("/api/trips/:id", [authJwt.verifyToken], async (request, response) => {
         try {
             var result = await TripModel.find().where({participant_ids: request.params.id}).exec();
-            response.send(result);
+            response.status(200).send(result);
         } catch (error) {
             response.status(500).send(error);
         }
@@ -48,7 +48,7 @@ module.exports = function(app) {
     app.get("/api/trip/:id", [authJwt.verifyToken], async (request, response) => {
         try {
             var trip = await TripModel.findById(request.params.id).exec();
-            response.send(trip);
+            response.status(200).send(trip);
         } catch (error) {
             response.status(500).send(error);
         }
@@ -60,7 +60,7 @@ module.exports = function(app) {
             var trip = await TripModel.findById(request.params.id).exec();
             trip.set(request.body);
             var result = await trip.save();
-            response.send(result);
+            response.status(200).send(result);
         } catch (error) {
             response.status(500).send(error);
         }
@@ -70,7 +70,7 @@ module.exports = function(app) {
     app.delete("/api/trip/:id", [authJwt.verifyToken], async (request, response) => {
         try {
             var result = await TripModel.deleteOne({ _id: request.params.id }).exec();
-            response.send(result);
+            response.status(200).send(result);
         } catch (error) {
             response.status(500).send(error);
         }

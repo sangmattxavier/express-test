@@ -33,7 +33,7 @@ module.exports = function(app) {
         var user = await UserModel.findById(request.params.id).exec();
         user.set(request.body);
         var result = await user.save();
-        response.send(result);
+        response.status(200).send(result);
     } catch (error) {
         response.status(500).send(error);
     }
