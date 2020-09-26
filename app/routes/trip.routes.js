@@ -22,9 +22,7 @@ module.exports = function(app) {
         } catch (error) {
             response.status(500).send(error);
         }
-
     });
-
 
     // get trips
     app.get("/api/trips", [authJwt.verifyToken], async (request, response) => {
