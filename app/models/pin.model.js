@@ -1,6 +1,6 @@
 const Mongoose  = require("mongoose");
 
-const PinModel = Mongoose.model("pin", {
+const Pin = Mongoose.model("pin", {
     location: String,
     comment: String,
     start_time: Date,
@@ -9,3 +9,5 @@ const PinModel = Mongoose.model("pin", {
     votes: Number,
     vote_max: Number
 });
+
+module.exports = Pin;
