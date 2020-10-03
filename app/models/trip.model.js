@@ -9,7 +9,12 @@ const Trip = mongoose.model(
     start_date: Date,
     end_date: Date,
     duration: Number,
-    locations: [String],
+    locations: [{
+      label: String,
+      address: String,
+      lat: Number,
+      long: Number,
+    }],
     pins: [{
       location: String,
       comment: String,
