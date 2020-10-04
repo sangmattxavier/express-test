@@ -26,8 +26,15 @@ const Trip = mongoose.model(
     }],
     participant_ids: {type: [String], required: true},
     pending_invites: [String],
-    itinerary_list: [String],
-    supply_list: [String],
+    itinerary_list: [{
+      day: Date,
+      label: String,
+    }],
+    supply_list: [{
+      label: String,
+      quantity: Number,
+      assigned: [String],
+    }],
     has_map: Boolean
   })
 );
