@@ -1,31 +1,36 @@
 const mongoose = require("mongoose");
 
-const Pin = require('./pin.model')
 const Trip = mongoose.model(
   "Trip",
   new mongoose.Schema({
-    title: {type: String, required: true},
-    type: {type: String, required: true},
+    title: {
+      type: String, required: true
+    },
+    type: {
+      type: String, required: true
+    },
+    participant_ids: {type: [String], required: true},
     start_date: Date,
     end_date: Date,
-    duration: Number,
     locations: [{
       label: String,
       address: String,
       lat: Number,
       long: Number,
     }],
+    pending_invites: [String],
     pins: [{
-      location: String,
-      comment: String,
+      long: Number,
+      lat: Number,
+      comment: {
+        label: String,
+        user: String,
+      },
       start_time: Date,
       end_time: Date,
-      duration: Number,
-      votes: Number,
-      vote_max: Number
+      vote_up: Number,
+      vote_down: Number,
     }],
-    participant_ids: {type: [String], required: true},
-    pending_invites: [String],
     itinerary_list: [{
       day: Date,
       label: String,
@@ -34,8 +39,7 @@ const Trip = mongoose.model(
       label: String,
       quantity: Number,
       assigned: [String],
-    }],
-    has_map: Boolean
+    }]
   })
 );
 
